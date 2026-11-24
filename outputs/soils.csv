@@ -1,0 +1,5 @@
+﻿id,lon,lat,soil_code,soil_name,soil_source,soil_scale,soil_status
+1,130.660446,42.533511,194,Маршевые засоленные и солонцеватые,https://egrpr.esoil.ru/content/1DB.html,2500000,ok
+2,131.524632,43.097469,98,Бурые лесные слабоненасыщенные (буроземы слабоненасыщенные),https://egrpr.esoil.ru/content/1DB.html,2500000,ok
+3,130.8,42.66,,,https://egrpr.esoil.ru/content/1DB.html,2500000,no_data
+4,130.865945,42.614981,52,Дерново-палево-подзолистые и подзолисто-буроземные,https://egrpr.esoil.ru/content/1DB.html,2500000,ok
