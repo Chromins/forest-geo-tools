@@ -1,0 +1,5 @@
+id,lon,lat,forest_type,forest_score,forest_source,forest_year,forest_scale_m
+1,130.660446,42.533511,NaturallyRegeneratingForest,0.996,Nature Trace ForTy v1.0,2020,10
+2,131.524632,43.097469,PrimaryForest,0.996,Nature Trace ForTy v1.0,2020,10
+3,130.8,42.66,NaturallyRegeneratingForest,0.992,Nature Trace ForTy v1.0,2020,10
+4,130.865945,42.614981,NaturallyRegeneratingForest,0.992,Nature Trace ForTy v1.0,2020,10
