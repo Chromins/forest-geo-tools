@@ -7,6 +7,7 @@ OUTPUT_DIR = PROJECT_ROOT / "outputs"
 
 SOIL_DIR = DATA_DIR / "soil"
 BOUNDARIES_DIR = DATA_DIR / "boundaries"
+FOREST_DIR = DATA_DIR / "tree_species"
 
 POINTS_FILE = PROJECT_ROOT / "points.csv"
 

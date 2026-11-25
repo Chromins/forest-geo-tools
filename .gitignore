@@ -3,6 +3,7 @@
 .AppleDouble
 .LSOverride
 ._*
+data/forest_species/
 
 # Python
 __pycache__/
@@ -24,3 +25,4 @@ data/soil/
 # Secrets
 .env
 .env.local
+.DS_Store
