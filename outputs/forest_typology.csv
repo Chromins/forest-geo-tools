@@ -1,5 +1,16 @@
-id,lon,lat,forest_type,forest_score,forest_source,forest_year,forest_scale_m
+﻿id,lon,lat,forest_type,forest_score,forest_source,forest_year,forest_scale_m
 1,130.660446,42.533511,NaturallyRegeneratingForest,0.996,Nature Trace ForTy v1.0,2020,10
 2,131.524632,43.097469,PrimaryForest,0.996,Nature Trace ForTy v1.0,2020,10
 3,130.8,42.66,NaturallyRegeneratingForest,0.992,Nature Trace ForTy v1.0,2020,10
 4,130.865945,42.614981,NaturallyRegeneratingForest,0.992,Nature Trace ForTy v1.0,2020,10
+5,131.19186,42.574427,NaturallyRegeneratingForest,0.984,Nature Trace ForTy v1.0,2020,10
+6,131.223527,42.592275,NaturallyRegeneratingForest,0.996,Nature Trace ForTy v1.0,2020,10
+7,131.255807,42.797205,NaturallyRegeneratingForest,0.996,Nature Trace ForTy v1.0,2020,10
+8,131.179237,42.825291,PrimaryForest,0.984,Nature Trace ForTy v1.0,2020,10
+9,131.302858,43.027194,PrimaryForest,0.996,Nature Trace ForTy v1.0,2020,10
+10,131.209293,42.742242,NaturallyRegeneratingForest,0.996,Nature Trace ForTy v1.0,2020,10
+11,130.589476,42.533838,NaturallyRegeneratingForest,0.992,Nature Trace ForTy v1.0,2020,10
+12,130.757747,42.743576,NaturallyRegeneratingForest,0.996,Nature Trace ForTy v1.0,2020,10
+13,130.901354,42.837606,NaturallyRegeneratingForest,0.956,Nature Trace ForTy v1.0,2020,10
+14,131.032847,42.84206,PrimaryForest,0.972,Nature Trace ForTy v1.0,2020,10
+15,131.153185,42.904042,PrimaryForest,0.992,Nature Trace ForTy v1.0,2020,10
