@@ -1,14 +1,24 @@
 import ee
 import pandas as pd
+from points import load_points
+from config import OUTPUT_DIR, EE_PROJECT_ID
 
-ee.Initialize(project="omela-geo-tools")
 
-points = [
-    (1, 130.660446, 42.533511),
-    (2, 131.524632, 43.097469),
-    (3, 130.800000, 42.660000),
-    (4, 130.865945, 42.614981),
-]
+def create_terrain():
+    collection = ee.ImageCollection(
+        "COPERNICUS/DEM/GLO30_2024_1"
+    ).select("DEM")
+
+    projection = collection.first().projection()
+    dem = collection.mosaic().setDefaultProjection(projection)
+
+    slope = ee.Terrain.slope(dem)
+
+    terrain = dem.addBands(slope)
+    terrain = terrain.rename(['elevation_m', 'slope_deg'])
+
+    return terrain
+
 
 def fetch_terrain(points, terrain):
     features = []
@@ -41,24 +51,31 @@ def fetch_terrain(points, terrain):
 
     return data
 
-collection = ee.ImageCollection(
-    "COPERNICUS/DEM/GLO30_2024_1"
-).select("DEM")
 
-# Объединяем географические фрагменты в единый слой
-projection = collection.first().projection()
-dem = collection.mosaic().setDefaultProjection(projection)
+def terrain_processing(points, terrain):
 
-# Рассчитываем уклон поверхности в градусах
-slope = ee.Terrain.slope(dem)
+    data = fetch_terrain(points, terrain)
 
-terrain = dem.addBands(slope)
-terrain = terrain.rename(['elevation_m', 'slope_deg'])
+    df = pd.DataFrame(data)
+    df['terrain_source'] = 'COPERNICUS/DEM/GLO30_2024_1'
+    df['sampling_scale_m'] = 30
 
-data = fetch_terrain(points, terrain)
+    return df
 
-df = pd.DataFrame(data)
-df['terrain_source'] = 'COPERNICUS/DEM/GLO30_2024_1'
-df['sampling_scale_m'] = 30
+if __name__ == "__main__":
 
-df.to_csv('terrain_slope.csv', index=False)
+    ee.Initialize(project=EE_PROJECT_ID)
+
+    points = load_points()
+
+    terrain = create_terrain()
+
+    df = terrain_processing(points, terrain)
+
+    df.to_csv(
+        OUTPUT_DIR / 'terrain_slope.csv',
+        index=False,
+        encoding='utf-8-sig'
+    )
+
+    print(df.to_string(index=False))

@@ -3,6 +3,7 @@
 import geopandas as gpd
 import pandas as pd
 from config import SOIL_DIR, OUTPUT_DIR
+from points import load_points
 
 
 def load_soil_data():
@@ -94,12 +95,7 @@ def soil_processing(points, soil_polygons, soil_legend):
 
 if __name__ == '__main__':
 
-    points = [
-        (1, 130.660446, 42.533511),
-        (2, 131.524632, 43.097469),
-        (3, 130.800000, 42.660000),
-        (4, 130.865945, 42.614981),
-    ]
+    points = load_points()
 
     soil_polygons, soil_legend = load_soil_data()
 

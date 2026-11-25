@@ -1,22 +1,17 @@
 import ee
 import pandas as pd
 import numpy as np
+from points import load_points
+from config import OUTPUT_DIR, EE_PROJECT_ID
 
-ee.Initialize(project="omela-geo-tools")
 
-collection = ee.ImageCollection(
-    "projects/nature-trace/assets/forest_typology/"
-    "forest_typology_2020_v1_0_collection"
-)
+def create_forest():
 
-points = [
-    (1, 130.660446, 42.533511),
-    (2, 131.524632, 43.097469),
-    (3, 130.800000, 42.660000),
-    (4, 130.865945, 42.614981),
-]
+    collection = ee.ImageCollection(
+        "projects/nature-trace/assets/forest_typology/"
+        "forest_typology_2020_v1_0_collection")
 
-forest = collection.mosaic()
+    return collection.mosaic()
 
 def fetch_forest(points, forest):
     forest_types = []
@@ -36,6 +31,7 @@ def fetch_forest(points, forest):
     result = result.getInfo()
 
     return result
+
 
 def classify_forest(properties):
     scores = []
@@ -67,6 +63,7 @@ def classify_forest(properties):
 
 
 def process_forest(data):
+
     result = []
 
     for point in data['features']:
@@ -81,13 +78,31 @@ def process_forest(data):
 
     return result
 
-data = fetch_forest(points, forest)
-result = process_forest(data)
 
-df = pd.DataFrame(result)
+def forest_processing(points, forest):
 
-df['forest_source'] = 'Nature Trace ForTy v1.0'
-df['forest_year'] = 2020
-df['forest_scale_m'] = 10
+    data = fetch_forest(points, forest)
+    result = process_forest(data)
 
-df.to_csv('forest_typology.csv', index=False)
+    df = pd.DataFrame(result)
+
+    df['forest_source'] = 'Nature Trace ForTy v1.0'
+    df['forest_year'] = 2020
+    df['forest_scale_m'] = 10
+
+    return df
+
+
+if __name__ == '__main__':
+
+    ee.Initialize(project=EE_PROJECT_ID)
+
+    points = load_points()
+    forest = create_forest()
+
+    df = forest_processing(points, forest)
+
+
+    df.to_csv(OUTPUT_DIR/ 'forest_typology.csv',
+              index=False,
+              encoding='utf-8-sig',)
